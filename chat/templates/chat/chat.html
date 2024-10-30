@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ChatGPT Job Chat</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+</head>
+<body>
+    <h1>転職活動の自己PR添削</h1>
+    <form method="post">
+        {% csrf_token %}
+        <textarea name="user_message" rows="4" cols="50" placeholder="自己PRを入力してください..."></textarea><br>
+        <button type="submit">送信</button>
+    </form>
+    {% if ai_response %}
+        <h2>AIの回答:</h2>
+        <p>{{ ai_response }}</p>
+    {% endif %}
+    <br>
+    <a href="{% url 'log' %}"><button type="button">チャットログを見る</button></a>
+</body>
+</html>

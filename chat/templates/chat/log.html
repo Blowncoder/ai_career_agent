@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>チャットログ</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+</head>
+<body>
+    <h1>チャットログ</h1>
+    <ul>
+        {% for log in logs %}
+            <li>ユーザー: {{ log.user_message }} (入力時刻: {{ log.timestamp }})</li>
+            <li>AI: {{ log.ai_response }} (出力時刻: {{ log.timestamp }})</li>
+        {% endfor %}
+    </ul>
+    <form method="post" action="{% url 'reset_log' %}">
+        {% csrf_token %}
+        <button type="submit">ログをリセット</button>
+    </form>
+</body>
+</html>
